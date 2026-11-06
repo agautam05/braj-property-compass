@@ -17,6 +17,7 @@ export type Project = {
   approvals: string;
   images: string[];
   featured: boolean;
+  published?: boolean;
   order: number;
 };
 
@@ -151,6 +152,7 @@ function project(
     approvals: "Subject to document verification",
     images,
     featured: true,
+    published: true,
     order,
   };
 }

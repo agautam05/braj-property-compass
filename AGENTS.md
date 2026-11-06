@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- All demo records use the shared browser-local store; mutations notify public and admin views immediately without backend services.
+- Public project queries exclude unpublished records; budget and size filters retain unknown ranges and explicitly disclose that they need confirmation.
+- Page modules live in TanStack file routes, with shared public chrome at the root and demo administration in its own component.

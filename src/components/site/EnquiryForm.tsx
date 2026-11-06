@@ -78,7 +78,7 @@ export function EnquiryForm({
       status: kind === "visit" ? "Visit scheduled" : "New",
       notes: [],
       createdAt: now,
-      demo: false,
+      demo: true,
     };
     update((d) => {
       const next = { ...d, leads: [lead, ...d.leads] };
@@ -93,15 +93,15 @@ export function EnquiryForm({
           status: "Requested",
           notes: lead.message,
           createdAt: now,
-          demo: false,
+          demo: true,
         };
         next.visits = [v, ...d.visits];
       }
       return next;
     });
     setDone(true);
-    toast.success(kind === "visit" ? "Site visit request received" : "Enquiry received", {
-      description: "Our team will contact you shortly.",
+    toast.success(kind === "visit" ? "Demo visit saved" : "Demo enquiry saved", {
+      description: "Saved in this browser only; not sent to the team.",
     });
   }
 
@@ -112,8 +112,8 @@ export function EnquiryForm({
         <h3 className="font-serif text-2xl text-primary">Thank you, {vals.name.split(" ")[0]}.</h3>
         <p className="text-sm text-muted-foreground">
           {kind === "visit"
-            ? "Your site visit request is recorded. We will call to confirm the date and time."
-            : "Your enquiry is recorded. We will call you back with current details."}
+            ? "Your demo visit request is saved in this browser only. Call or WhatsApp to arrange a real visit."
+            : "Your demo enquiry is saved in this browser only, not sent to the team. Call or WhatsApp for a real enquiry."}
         </p>
         <Button variant="outline" size="sm" onClick={() => { setDone(false); setVals((v) => ({ ...v, name: "", phone: "", email: "", message: defaultMessage })); }}>
           Submit another
@@ -152,7 +152,7 @@ export function EnquiryForm({
           <Label htmlFor={id("project")}>Project</Label>
           <select id={id("project")} value={vals.projectId} onChange={set("projectId")} className={`mt-1.5 ${selectCls}`}>
             <option value="">Any / not sure</option>
-            {projects.map((p) => (
+            {projects.filter((p) => p.published !== false).map((p) => (
               <option key={p.id} value={p.id}>
                 {p.name}
               </option>
@@ -199,7 +199,7 @@ export function EnquiryForm({
         {kind === "visit" ? "Request site visit" : "Send enquiry"}
       </Button>
       <p className="text-xs text-muted-foreground">
-        By submitting you agree to be contacted about your enquiry. See our privacy policy.
+        DEMO MODE: saved in this browser only. Do not enter sensitive personal information.
       </p>
     </form>
   );

@@ -47,8 +47,8 @@ export const SIZES: { id: string; label: string; min: number; max: number }[] = 
 /** Projects with unknown values are kept (they may fit) — flagged by caller. */
 export function overlaps(aMin: number | null, aMax: number | null, bMin: number, bMax: number) {
   if (aMin == null && aMax == null) return true;
-  const lo = aMin ?? aMax!;
-  const hi = aMax ?? aMin!;
+  const lo = aMin ?? aMax ?? 0;
+  const hi = aMax ?? aMin ?? 0;
   return lo <= bMax && hi >= bMin;
 }
 
