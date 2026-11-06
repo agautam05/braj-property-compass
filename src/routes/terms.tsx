@@ -1,0 +1,6 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { PageTitle } from '@/components/site/PublicPages';
+import { Disclaimer } from '@/components/site/Footer';
+import { pageHead } from '@/lib/page-head';
+export const Route = createFileRoute('/terms')({ head: () => pageHead('Terms', 'Indicative property information and demonstration limitations for BrajProperty.in.'), component: Terms });
+function Terms() { return <div className="container-x pb-20"><PageTitle title="Terms of use" /><div className="max-w-3xl space-y-5 py-10"><p>This website is a functional local demonstration, not a booking platform. Enquiry submissions do not create reservations or contracts.</p><p>Business-wide poster ranges of ₹15 lakh–₹2 crore and 60–500 sq yd are indicative, subject to confirmation and not project-specific.</p><Disclaimer /><p>Verify original title, ownership, approvals and all transaction terms independently before making any payment. Images are illustrative and no returns are guaranteed.</p></div></div>; }
