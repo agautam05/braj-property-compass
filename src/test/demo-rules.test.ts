@@ -17,8 +17,8 @@ describe('BrajProperty demo rules', () => {
     expect(d.settings.officeAddress).toBe('');
   });
   it('filters search and location together', () => {
-    expect(filterProjects(seed().projects, 'Dham', 'Vrindavan').map((p) => p.slug)).toEqual(['banke-bihari-dham']);
-    expect(filterProjects(seed().projects, 'Dham', 'Mathura')).toHaveLength(0);
+    expect(filterProjects(seed().projects, 'Banke Bihari Dham', 'Vrindavan').map((p) => p.slug)).toEqual(['banke-bihari-dham']);
+    expect(filterProjects(seed().projects, 'Banke Bihari Dham', 'Mathura')).toHaveLength(0);
   });
   it('uses known budget ranges while retaining unknown prices for confirmation', () => {
     const p = seed().projects[0];
