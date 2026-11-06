@@ -27,7 +27,7 @@ export function Footer() {
         <div>
           <h3 className="eyebrow mb-4">Projects</h3>
           <ul className="space-y-2 text-sm text-primary-foreground/80">
-            {projects.slice(0, 6).map((p) => (
+            {projects.filter((p) => p.published !== false).slice(0, 6).map((p) => (
               <li key={p.id}>
                 <Link to="/projects/$slug" params={{ slug: p.slug }} className="hover:text-gold">
                   {p.name}

@@ -17,6 +17,7 @@ export type Project = {
   approvals: string;
   images: string[];
   featured: boolean;
+  published?: boolean;
   order: number;
 };
 
@@ -151,6 +152,7 @@ function project(
     approvals: "Subject to document verification",
     images,
     featured: true,
+    published: true,
     order,
   };
 }
@@ -172,9 +174,9 @@ export function seed(): DB {
       id: `inv-${pi}-${i}`,
       projectId: p.id,
       unit: `SAMPLE-${String.fromCharCode(65 + pi)}${i + 1}`,
-      sizeSqYd: [100, 150, 200, 250][(pi + i) % 4],
-      facing: facings[(pi + i) % 4],
-      status: statuses[(pi + i) % 4],
+      sizeSqYd: [100, 150, 200, 250][(pi + i) % 4] ?? 100,
+      facing: facings[(pi + i) % 4] ?? 'East',
+      status: statuses[(pi + i) % 4] ?? 'Available',
       indicativePriceLakh: null,
       sample: true,
     })),
@@ -196,8 +198,8 @@ export function seed(): DB {
     name: `${name} (fictional)`,
     phone: `+91 90000 0000${i}`,
     email: "",
-    projectId: projects[pi].id,
-    budget: ["₹25–50 lakh", "₹50 lakh–₹1 crore", "Up to ₹25 lakh", "₹1–2 crore"][i % 4],
+    projectId: projects[pi]?.id ?? '',
+    budget: ["₹25–50 lakh", "₹50 lakh–₹1 crore", "Up to ₹25 lakh", "₹1–2 crore"][i % 4] ?? '',
     message: "Fictional demo enquiry for dashboard preview.",
     source,
     status,
@@ -214,7 +216,7 @@ export function seed(): DB {
     id: `visit-${i}`,
     name: `${name} (fictional)`,
     phone: `+91 90000 1000${i}`,
-    projectId: projects[pi as number].id,
+    projectId: projects[pi as number]?.id ?? '',
     date: date as string,
     time: time as string,
     status: status as Visit["status"],

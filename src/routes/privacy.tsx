@@ -1,0 +1,5 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { PageTitle } from '@/components/site/PublicPages';
+import { pageHead } from '@/lib/page-head';
+export const Route = createFileRoute('/privacy')({ head: () => pageHead('Privacy', 'How the browser-local BrajProperty demo handles enquiry and website data.'), component: Privacy });
+function Privacy() { return <div className="container-x pb-20"><PageTitle title="Privacy notice" /><div className="max-w-3xl space-y-5 py-10 leading-relaxed"><p>This demo stores projects, enquiries and settings in this browser’s local storage. Enquiries are not transmitted to a sales team. Anyone using this browser can access its demo records; do not enter sensitive information.</p><p>You can remove these records by clearing this website’s browser storage. Exported CSV files remain on the device until you delete them.</p><p>Call and WhatsApp links open external communication services with their own privacy terms. A production privacy policy and secure shared storage are not part of this demo.</p></div></div>; }
