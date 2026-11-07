@@ -10,7 +10,7 @@ import { PageTitle, selectClass } from './PublicPages';
 
 function Field({ name, children }: { name: string; children: ReactNode }) {
   const id = useId();
-  return <label htmlFor={id} className="grid gap-2 text-sm">{name}{isValidElement<{ id?: string }>(children) ? cloneElement(children, { id }) : children}</label>;
+  return <div className="grid gap-2 text-sm"><label htmlFor={id}>{name}</label>{isValidElement<{ id?: string }>(children) ? cloneElement(children, { id }) : children}</div>;
 }
 function csvCell(value: string) { const safe = /^[=+@\-\t\r]/.test(value) ? `'${value}` : value; return `"${safe.replaceAll('"', '""')}"`; }
 const sections = ['Overview', 'Projects', 'Leads', 'Gallery', 'Website settings'] as const;
