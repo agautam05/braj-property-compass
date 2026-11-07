@@ -150,7 +150,7 @@ export function EnquiryForm({
         </div>
         <div>
           <Label htmlFor={id("project")}>Project</Label>
-          <select id={id("project")} value={vals.projectId} onChange={set("projectId")} className={`mt-1.5 ${selectCls}`}>
+          <select id={id("project")} aria-label="Project" value={vals.projectId} onChange={set("projectId")} className={`mt-1.5 ${selectCls}`}>
             <option value="">Any / not sure</option>
             {projects.filter((p) => p.published !== false).map((p) => (
               <option key={p.id} value={p.id}>
@@ -162,7 +162,7 @@ export function EnquiryForm({
         {kind === "enquiry" ? (
           <div className={compact ? "" : "sm:col-span-2"}>
             <Label htmlFor={id("budget")}>Budget</Label>
-            <select id={id("budget")} value={vals.budget} onChange={set("budget")} className={`mt-1.5 ${selectCls}`}>
+            <select id={id("budget")} aria-label="Budget" value={vals.budget} onChange={set("budget")} className={`mt-1.5 ${selectCls}`}>
               <option value="">Prefer not to say</option>
               {BUDGETS.map((b) => (
                 <option key={b.id} value={b.label}>
@@ -180,7 +180,7 @@ export function EnquiryForm({
             </div>
             <div>
               <Label htmlFor={id("time")}>Preferred time *</Label>
-              <select id={id("time")} value={vals.time} onChange={set("time")} className={`mt-1.5 ${selectCls}`} {...aria("time")}>
+              <select id={id("time")} aria-label="Preferred time *" value={vals.time} onChange={set("time")} className={`mt-1.5 ${selectCls}`} {...aria("time")}>
                 <option value="">Select</option>
                 {["10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"].map((t) => (
                   <option key={t}>{t}</option>
